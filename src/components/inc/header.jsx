@@ -1,9 +1,8 @@
 import React from 'react';
 import {
-    NavigationMenu, NavigationMenuContent,
+    NavigationMenu,
     NavigationMenuItem, NavigationMenuLink,
     NavigationMenuList,
-    NavigationMenuTrigger
 } from "@/components/ui/navigation-menu.jsx";
 
 const Header = () => {
@@ -13,7 +12,7 @@ const Header = () => {
             <NavigationMenu>
                 <NavigationMenuList>
                     <NavigationMenuItem>
-                            <NavigationMenuLink href="contact">Link</NavigationMenuLink>
+                            <NavigationMenuLink href="contact">Another Link</NavigationMenuLink>
                     </NavigationMenuItem>
                 </NavigationMenuList>
             </NavigationMenu>
