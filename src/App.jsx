@@ -47,6 +47,26 @@ function MovieCard({movie: {title, poster_path, original_language, vote_average,
     </article>;
 }
 
+function SearchBox(props) {
+    return <section className="w-full flex items-center justify-center my-4">
+        <div className="w-1/2 max-w-full flex items-center bg-slate-800 rounded">
+            <Search className="text-indigo-400 mr-2"/>
+            <input type="text" placeholder="Search..." value={props.value} onChange={props.onChange}
+                   className="text-gray-100 h-10 my-2 outline-0 w-full"/>
+        </div>
+    </section>;
+}
+
+function Movies(props) {
+    return <section className="flex flex-col">
+        {props.loading ? (<p className="text-white">Loading...</p>) : (
+            <div className="grid grid-cols-1 gap-2 lg:grid-cols-3 xl:grid-cols-4 items-stretch">
+                {props.movieList.map(props.callbackfn)}
+            </div>
+        )}
+    </section>;
+}
+
 function Main() {
     const [movieList, setMovieList] = useState([])
     const [isLoading, setIsLoading] = useState(true)
@@ -85,23 +105,12 @@ function Main() {
     }, [])
     return <main className="flex flex-col w-4/5">
         <Hero/>
-        <section className="w-full flex items-center justify-center my-4">
-            <div className="w-1/2 max-w-full flex items-center bg-slate-800 rounded">
-                <Search className="text-indigo-400 mr-2"/>
-                <input type="text" placeholder="Search..." value={searchQuery} onChange={(e) => {
-                    setSearchQuery(e.target.value)
-                }} className="text-gray-100 h-10 my-2 outline-0 w-full"/>
-            </div>
-        </section>
-        <section className="flex flex-col">
-            {isLoading ? (<p className="text-white">Loading...</p>) : (
-                <div className="grid grid-cols-1 gap-2 lg:grid-cols-3 xl:grid-cols-4 items-stretch">
-                    {movieList.map((movie) => (
-                        <MovieCard key={movie.id} movie={movie}/>
-                    ))}
-                </div>
-            )}
-        </section>
+        <SearchBox value={searchQuery} onChange={(e) => {
+            setSearchQuery(e.target.value)
+        }}/>
+        <Movies loading={isLoading} movieList={movieList} callbackfn={(movie) => (
+            <MovieCard key={movie.id} movie={movie}/>
+        )}/>
     </main>;
 }
 
