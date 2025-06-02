@@ -61,12 +61,24 @@ function Main() {
         }
         setIsLoading(false)
     }
+
+    const searchMovies = async (query) => {
+        try {
+            const endpoint = `${API_BASE_URL}/search/movie?query=${query}&include_video=false&page=1`;
+            const response = await fetch(endpoint, API_OPTIONS)
+            const data = await response.json();
+            setMovieList(data.results);
+        } catch (e) {
+            console.log(`Error searching movies: ${e}`);
+        }
+        setIsLoading(false)
+    }
     const [searchQuery, setSearchQuery] = useState('')
     useDebounce(() => {
         if (!searchQuery) {
             return;
         }
-        console.log(searchQuery);
+        searchMovies(searchQuery)
     }, 1000, [searchQuery])
     useEffect(() => {
         fetchMovies()
