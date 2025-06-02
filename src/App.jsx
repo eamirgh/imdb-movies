@@ -5,7 +5,7 @@ import {useEffect, useState} from "react";
 import {useDebounce} from "react-use";
 
 function Hero() {
-    return <section className="flex flex-col items-center justify-center">
+    return <section className="flex flex-col items-center justify-center my-8">
         <img src="/hero.png" alt="Poster" className="w-2/3"/>
         <h1 className="text-5xl font-bold text-gray-100">
             Find <span
