@@ -71,7 +71,7 @@ function Main() {
     useEffect(() => {
         fetchMovies()
     }, [])
-    return <main className="flex flex-col">
+    return <main className="flex flex-col w-4/5">
         <Hero/>
         <section className="w-full flex items-center justify-center my-4">
             <div className="w-1/2 max-w-full flex items-center bg-slate-800 rounded">
